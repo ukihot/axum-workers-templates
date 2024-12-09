@@ -1,0 +1,11 @@
+name = "axum-workers-templates"
+main = "build/worker/shim.mjs"
+compatibility_date = "2024-12-09"
+
+[build]
+command = "cargo install -q worker-build && worker-build --release"
+
+[[kv_namespaces]]
+binding = "KV"
+id = "83f282c1d4ba4f93bfbaf9e1d85e3efd"
+preview_id = "7e3d4170ec43479f878557d046ba1c99"
