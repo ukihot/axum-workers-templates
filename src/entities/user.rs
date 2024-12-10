@@ -1,4 +1,5 @@
 use rand::Rng;
+use std::fmt;
 
 #[derive(Debug, Clone)]
 pub struct User {
@@ -44,3 +45,33 @@ impl User {
             .collect()
     }
 }
+
+impl PartialEq for User {
+    fn eq(&self, other: &Self) -> bool {
+        self.id == other.id
+    }
+}
+
+impl Eq for User {}
+
+impl fmt::Display for UserRole {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        let role_str = match self {
+            UserRole::Participant => "Participant",
+            UserRole::Observer => "Observer",
+        };
+        write!(f, "{}", role_str)
+    }
+}
+
+impl PartialEq for UserRole {
+    fn eq(&self, other: &Self) -> bool {
+        matches!(
+            (self, other),
+            (UserRole::Participant, UserRole::Participant)
+                | (UserRole::Observer, UserRole::Observer)
+        )
+    }
+}
+
+impl Eq for UserRole {}
